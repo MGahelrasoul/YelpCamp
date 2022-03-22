@@ -1,0 +1,242 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+    display: contents;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+    height: 100%;
+    margin-bottom: 60px;
+}
+form h1 {
+    padding: 50px;
+    text-align: center;
+}
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.full-card-look {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+.card-body {
+    padding: 15px;
+}
+
+.delete-form {
+    display: inline;
+}
+
+.btn-primary {
+    color: #eee;
+    background-color: #d32b01;
+    border-color: #d32b01;
+    transition: border-color 0s, background-color 0s;
+}
+.btn-primary:hover {
+    color: #d32b01;
+    background-color: rgb(0,0,0,0);
+    border-color: #d32b01;
+}
+.jumbotron .btn-primary:hover {
+    color: #eee;
+    background-color: rgb(0,0,0,.1);
+    border-color: #d32b01;
+}
+.form-group,
+.jumbotron .form-inline input.form-control {
+    width: 100%;
+}
+.jumbotron img {
+    width: 25px;
+    margin: -3px 0 0;
+}
+.jumbotron a {
+    text-shadow: 0 0;
+}
+
+.navbar {
+    position: absolute;
+    background: rgb(0,0,0, .3);
+    left: 0;
+    right: 0;
+}
+.link-after {
+    width: 0;
+    margin: auto;
+    height: 2px;
+    background: #eee;
+    border-radius: .3em;
+    transition: width 0s;
+}
+.navbar-nav .nav-item a.nav-link:hover + .link-after{
+    width: 50%;
+}
+
+.footer {
+  background-color: #f5f5f5;
+  width: 100%;
+  bottom: 0;
+  height: 60px;
+  position: absolute;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.banner {
+    position: absolute;
+    width: 100%;
+    background-repeat: no-repeat;
+    height: 400px;
+    top: 0;
+    z-index: -1;
+    background-color: #000;
+    background: linear-gradient(0deg,#000 3%,#2a2a2a 100%);
+    background-position: 0 20%;
+    background-size: 100%;
+}
+.show-border {
+    border: 15px solid #fff;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+.show-border .card {
+    border: 0;
+    border-radius: 0;
+    margin-left: 15px;
+}
+.show-border .card img {
+    border-radius: 0;
+}
+.show-border .col-3,
+.show-border .col-9 {
+    padding: 0;
+}
+.show-border .col-12 {
+    border-top: 2px solid #f1f1f1;
+    margin-top: 3.3334em;
+    padding-top: 3.3334em;
+}
+
+.jumbotron {
+    background-color: #000;
+    background: linear-gradient(0deg,#000 3%,#2a2a2a 100%);
+    background-image: url("https://images.unsplash.com/photo-1496080174650-637e3f22fa03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2012&q=80");
+    background-size: cover;
+    background-position: center;
+    min-height: 60vh;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-bottom: 0;
+    border-radius: 0;    
+    text-shadow: 2px 2px 10px rgb(0, 0, 0, .25), 0 0 2em rgb(0, 0, 0, .5), 0 0 .5em rgb(0, 0, 0, .75);
+}
+.nav-space {
+    margin-top: 6.6667em;
+}
+.container.nav-space {
+    max-width: 720px;
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron h1 {
+    font-weight: 800;
+    color: #eee;
+    margin: 0 0 1.6667em;
+}
+.jumbotron .lead {
+    font-weight: 300;
+    color: #eee;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+.push-card {
+  object-fit: cover;
+  height: 225px;
+}
+.meta {
+    font-size: .8em;
+}
+
+#map {
+  height: 300px;
+  width: 100%;
+}
+
+.navbar-brand {
+    padding-top: 0;
+}
+.navbar-brand img {
+    width: 15px;
+    padding-bottom: 1px;
+    margin: 0 -1.5px;
+}
+.jumbotron h1 img {
+    width: 30px;
+    padding-bottom: 3px;
+    margin: 0 -2px;
+}
+.jumbotron h1 span {
+    display:block;
+}
+
+@media (min-width: 576px) {
+    .jumbotron .form-inline input.form-control {
+        width: calc(100% - 51px);
+    }
+}
+@media (min-width: 768px) {
+    .jumbotron {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+    .jumbotron h1 span {
+        display:inline;
+    }
+}
+@media (min-width: 992px) {
+    .container.nav-space {
+        max-width: 1080px;
+    }
+    #map {
+      min-height: 400px;
+    }
+}
