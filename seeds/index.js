@@ -2,19 +2,21 @@ const mongoose = require("mongoose");
 const cities = require("./cities");
 const {places, descriptors} = require("./seedHelpers");
 const Campground = require("../models/campground");
-const campground = require("../models/campground");
+
+    // Connect MongoDB via mongoose
 
 mongoose.connect("mongodb://localhost:27017/yelp-camp", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
-
+// Catch error
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
     console.log("Database Connected");
 });
 
+    // seedDB function to seed (fill) Database with dummy data
 
 const sample = (array) => array[Math.floor(Math.random() * array.length)];
 const seedDB = async() => {
@@ -29,6 +31,7 @@ const seedDB = async() => {
     }
 }
 
+// Run seedDB, then close Database connection
 seedDB().then(() => {
     mongoose.connection.close();
 });

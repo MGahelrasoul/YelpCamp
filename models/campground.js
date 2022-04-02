@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+    // define Database Object Schema for Campground
+
 const CampgroundSchema = new Schema({
     title: String,
     price: String,
@@ -8,4 +10,5 @@ const CampgroundSchema = new Schema({
     location: String
 });
 
+// Export schema model for use
 module.exports = mongoose.model("Campground", CampgroundSchema);
