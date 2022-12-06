@@ -2,7 +2,7 @@ mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
     container: 'cluster-map',
     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-    style: 'mapbox://styles/mapbox/light-v10',
+    style: 'mapbox://styles/mapbox/dark-v10',
     center: [-103.5917, 40.6699],
     zoom: 3
 });
@@ -37,11 +37,11 @@ map.on('load', () => {
             'circle-color': [
                 'step',
                 ['get', 'point_count'],
-                '#51bbd6',
+                '#fcbf49',
                 10,
-                '#f1f075',
+                '#f77f00',
                 30,
-                '#f28cb1'
+                '#d62828'
             ],
             'circle-radius': [
                 'step',
@@ -73,7 +73,7 @@ map.on('load', () => {
         source: 'campgrounds',
         filter: ['!', ['has', 'point_count']],
         paint: {
-            'circle-color': '#11b4da',
+            'circle-color': '#fcbf49',
             'circle-radius': 4,
             'circle-stroke-width': 1,
             'circle-stroke-color': '#fff'
@@ -104,7 +104,7 @@ map.on('load', () => {
     // the location of the feature, with
     // description HTML from its properties.
     map.on('click', 'unclustered-point', (e) => {
-        const {popUpMarkup} = e.features[0].properties.popUpMarkup;
+        const popUpMarkup = e.features[0].properties.popUpMarkup;
         const coordinates = e.features[0].geometry.coordinates.slice();
 
         // Ensure that if the map is zoomed out such that

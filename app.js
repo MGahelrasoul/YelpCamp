@@ -20,9 +20,13 @@ const userRoutes = require("./routes/users");
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
 
+const MongoDBStore = require("connect-mongo");
+
+const dbUrl = "mongodb://localhost:27017/yelp-camp"; //process.env.DB_URL;
+
     // Connect MongoDB via mongoose
 
-mongoose.connect("mongodb://localhost:27017/yelp-camp", {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -46,8 +50,18 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(mongoSanitize());
 
+const store = MongoDBStore.create({
+    mongoUrl: dbUrl,
+    secret: "thisshouldbeabettersecret",
+    touchAfter: 24 * 3600,
+});
+store.on("error", function(e) {
+    console.log("SESSION STORE ERROR");
+});
+
 // Session config
 const sessionConfig = {
+    store,
     name: "session",
     secret: "thisshouldbeabettersecret",
     resave: false,
@@ -61,7 +75,56 @@ const sessionConfig = {
 }
 app.use(session(sessionConfig));
 app.use(flash());
-// app.use(helmet({ contentSecurityPolicy: false, }));
+// app.use(helmet());
+
+const scriptSrcUrls = [
+    "https://stackpath.bootstrapcdn.com/",
+    "https://api.tiles.mapbox.com/",
+    "https://api.mapbox.com/",
+    "https://kit.fontawesome.com/",
+    "https://code.jquery.com/",
+    "https://cdnjs.cloudflare.com/",
+    "https://cdn.jsdelivr.net/",
+];
+const styleSrcUrls = [
+    "https://kit-free.fontawesome.com/",
+    "https://stackpath.bootstrapcdn.com/",
+    "https://api.mapbox.com/",
+    "https://api.tiles.mapbox.com/",
+    "https://fonts.googleapis.com/",
+    "https://use.fontawesome.com/",
+    "https://cdn.jsdelivr.net/",
+];
+const connectSrcUrls = [
+    "https://api.mapbox.com/",
+    "https://a.tiles.mapbox.com/",
+    "https://b.tiles.mapbox.com/",
+    "https://events.mapbox.com/",
+];
+const fontSrcUrls = [];
+app.use(
+    helmet.contentSecurityPolicy({
+        // useDefaults: false,
+        directives: {
+            defaultSrc: [],
+            connectSrc: ["'self'", ...connectSrcUrls],
+            scriptSrc: ["'unsafe-inline'", "'self'", "'unsafe-eval'", "http://www.google.com", ...scriptSrcUrls],
+            styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+            workerSrc: ["'self'", "blob:"],
+            objectSrc: [],
+            imgSrc: [
+                "'self'",
+                "blob:",
+                "data:",
+                "https://res.cloudinary.com/dubnbjlho/",
+                "https://images.unsplash.com/",
+                "https://i.ibb.co/",
+            ],
+            fontSrc: ["'self'", ...fontSrcUrls],
+            // upgradeInsecureRequests: [],
+        },
+    })
+);
 
 // Passport init
 app.use(passport.initialize());
@@ -87,7 +150,7 @@ app.use("/campgrounds/:id/reviews", reviewRoutes);
 
 // Home
 app.get("/", (req, res) => {
-    res.render("home");
+    res.redirect("/campgrounds");
 });
 
 // Error Routes

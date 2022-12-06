@@ -36,8 +36,10 @@
                         <label for="image-<%=i%>"></label>
                     <% }) %>
                 </div>
-                <button class="btn btn-outline-info mb-3">Update Campground</button>
+                <div class="">
+                    <a class="btn btn-warning float-start" href="/campgrounds/<%= campground._id%>">Go Back</a>
+                    <button class="btn btn-success mb-3 float-end">Update Campground</button>
+                </div>
             </form>
-            <a href="/campgrounds/<%= campground._id%>">Back to Campground</a>
         </div>
     </div>

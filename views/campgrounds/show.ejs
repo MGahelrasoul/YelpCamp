@@ -36,14 +36,14 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item text-muted">
                         <%= campground.location %>
+                        <p style="float: right;">$<%= campground.price %>/night</p>
                     </li>
                     <li class="list-group-item">Submitted by <%= campground.author.username %>
                     </li>
-                    <li class="list-group-item">$<%= campground.price %>/night</li>
                 </ul>
                 <% if(currentUser && campground.author.equals(currentUser._id)) { %>
                     <div class="card-body">
-                        <a class="card-link btn btn-info" href="/campgrounds/<%= campground._id%>/edit">Edit</a>
+                        <a class="card-link btn btn-warning" href="/campgrounds/<%= campground._id%>/edit">Edit</a>
                         <form class="d-inline" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
                             <button class="btn btn-danger">Delete</button>
                         </form>
@@ -85,15 +85,15 @@
                 </form>
                 <% } %>
                     <% for(let review of campground.reviews) {%>
-                        <div class="card">
+                        <div class="card mb-3">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     <%= review.author.username %>
                                 </h5>
                                 <p class="starability-result" data-rating="<%= review.rating%>">
-                                    Rated: <%= review.rating%> stars
+                                    <%= review.rating%>
                                 </p>
-                                <p class="card-text">Review: <%= review.body%>
+                                <p class="card-text"><%= review.body%>
                                 </p>
                                 <% if(currentUser && review.author.equals(currentUser._id)) { %>
                                     <form
